@@ -437,7 +437,8 @@ class Proposals extends Common
                 $this->Editor->setConfig('groupByClause',"GROUP BY report.award_ID");
             }
 
-            if(!isset($_GET['quietly']) && $user->isManager && isset($_GET['asManager']))
+            //if(!isset($_GET['quietly']) && $user->isManager && isset($_GET['asManager']))
+            if(!isset($_GET['quietly']))
             {
                $this->Editor->setConfig('afterAddFun',array(&$this,'savedProposal'));
                $this->Editor->setConfig('afterEditFun',array(&$this,'savedProposal'));
@@ -673,14 +674,14 @@ class Proposals extends Common
             if ($row['inst_FO_Contact'] != "") { $to = $to.",".$row['inst_FO_Contact']; };
     
             $headers = "From: go@wvresearch.org\r\n" .
-                       "CC: jan.taylor@wvresearch.org, annette.carpenter@wvresearch.org,\r\n" .
+                       "CC: juliana.serafin@wvresearch.org, annette.carpenter@wvresearch.org\r\n" .
                        "Bcc: jack.smith@wvresearch.org\r\n" .
                        "X-mailer: php";            
-            $subject = "[GO!] Grant Proposal Submitted for Review from ".$row[people_FirstName]." ".$row['people_LastName']." at ".$row['inst_Name'];
+            $subject = "[GO!] Grant Proposal Submitted for Review from ".$row['people_FirstName']." ".$row['people_LastName']." at ".$row['inst_Name'];
             $body = "The following grant proposal has been received for review:\r\n\r\n" .
                     "   Announcement:    ".$row['ann_Public_Name']."\r\n" .
                     "   Proposal Title:  ".$row['proposal_Name']."\r\n" .
-                    "   PI:  ".$row[people_FirstName]." ".$row['people_LastName']."\r\n" .
+                    "   PI:  ".$row['people_FirstName']." ".$row['people_LastName']."\r\n" .
                     "   Institution:  ".$row['inst_Name']."\r\n" .
                     "   Document Name:   ".$row['proposal_Attachment_DisplayName']."\r\n" .
                     "   [ File:  http://wvresearch.org/godocs/proposals/".rawurlencode($row['proposal_Attachment_StoredName'])." ]\r\n\r\n" .
@@ -724,7 +725,7 @@ class Proposals extends Common
         if($row = $result->fetch())
         {
             $query = "INSERT INTO tbl_MARS_Awards (proposal_ID, ann_ID, award_Date, award_submittedby, award_StartDate, award_EndDate) VALUES (".$row['proposal_ID'].",".$row['ann_ID'].",NOW(),".$user->peopleId.",NOW(),DATE_ADD(NOW(),INTERVAL 1 YEAR))";
-            error_log($query);
+            error_log($query."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
             $result = $this->Editor->doQuery($query);
                 
             if($result)

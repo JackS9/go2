@@ -152,7 +152,7 @@ class MenuPage extends Common
             <tr><td><a target="go2main" class="button" href="Proposals.php?asUser=T" title="Click here to view, edit, or check status of your Proposals.">View, Edit, Submit <i>Your</i> <b>Proposals</b></a></td></tr>
             <tr><td><a target="go2main" class="button" href="Reports.php?asUser=T" title="Click here to view and submit Reports to your Awards.">View, Edit, Submit <i>Your</i> <b>Reports</b></a></td></tr>
             <tr><td><hr></td></tr>
-            <tr><td><a target="go2main" class="button" href="Profiles.php?asUser=T&sec_id=<?php echo $user->id ?>" title="Click here to view or edit your User profile.">Edit <i>Your</i> <b>User Profile</b> (Use GO! v1.0)</a></td></tr>
+            <tr><td><a target="_top" class="button" href="https://wvresearch.org/data/go/index.php" title="Click here to log in to GO! v1.0 and view or edit your User profile.">Edit <i>Your</i> <b>User Profile</b> (Uses GO! v1.0)</a></td></tr>
             </table>
             <div id="officerMenu">
             <hr>
@@ -193,7 +193,7 @@ class MenuPage extends Common
                 <tr><td><hr></td></tr>
                 <tr><td><a target="go2main" class="button-tall" href="Increments.php?asManager=T&pending-only=T">View Awards <b>Without Reports</b><br/>&nbsp;<span style="color:blue">>> Submit <b>Reports</b> on behalf of PI</span></a></td></tr>
                 <tr><td><a target="go2main" class="button-tall" href="Reports.php?asManager=T&pending-only=T">Approve <b>Pending Reports</b><br/>&nbsp;<span style="color:blue">>> Award <b>New Increments</b></span></a></td></tr>
-                <tr><td><a target="go2main" class="button" href="Reports.php?asManager=T&quietly=T">View, Edit <i>All</i> <b>Reports</b></a></td></tr>
+                <tr><td><a target="go2main" class="button" href="Reports.php?asManager=T">View, Edit <i>All</i> <b>Reports</b></a></td></tr>
                 <tr><td><hr></td></tr>
                 <tr><td><a target="go2main" class="button" href="Users.php?asManager=T&pending_only=T" title="Click here to view and approve pending User Registration requests.">Approve <b>New Users</b> (Use GO! v1.0)</a></td></tr>
                 <tr><td><a target="go2main" class="button" href="Users.php?asManager=T&read-only=T" title="Click here to view all Registered Users.">View <i>All</i> <b>Users</b></a></td></tr>
@@ -245,7 +245,8 @@ class MenuPage extends Common
         <hr>
         <h4>Miscellaneous documents:</h4>
         <table class="button-box">
-        <tr><td><a target="_top" class="button-center" href="https://wvresearch.org/wp-content/uploads/2017/12/Copy-of-Single-year-Budget-Template.xls"> Download Budget template (Excel)</a></td></tr>
+        <tr><td><a target="_top" class="button-center" href="https://wvresearch.org/wp-content/uploads/2019/10/Single year Budget Template.xls">Single-year Budget template</a></td></tr>
+        <tr><td><a target="_top" class="button-center" href="https://wvresearch.org/wp-content/uploads/2019/10/Multi-year Budget Template.xls">Multi-year Budget template</a></td></tr>
         </table>
         <hr>
         <h4>For more information, visit:</h4>

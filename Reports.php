@@ -362,7 +362,8 @@ class Reports extends Common
 
         if($user->isLoggedIn)
         {
-            if(!isset($_GET['quietly']) && $user->isManager && isset($_GET['asManager']))
+            //if(!isset($_GET['quietly']) && $user->isManager && isset($_GET['asManager']))
+            if(!isset($_GET['quietly']))
             {
                 $this->Editor->setConfig('afterAddFun',array(&$this,'savedReport'));
                 $this->Editor->setConfig('afterEditFun',array(&$this,'savedReport'));
@@ -520,12 +521,12 @@ class Reports extends Common
             if ($row['inst_FO_Contact'] != "") { $to = $to.",".$row['inst_FO_Contact']; };
     
             $headers = "From: go@wvresearch.org\r\n" .
-                       "CC: jan.taylor@wvresearch.org, annette.echols@wvresearch.org,\r\n" .
+                       "CC: juliana.serafin@wvresearch.org, annette.carpenter@wvresearch.org\r\n" .
                        "Bcc: jack.smith@wvresearch.org\r\n" .
                        "X-mailer: php";
             $headers = "From: go@wvresearch.org\r\n";
             
-            $subject = "[GO!] Grant Report Submitted for Approval from ".$row[people_FirstName]." ".$row['people_LastName']." at ".$row['inst_Name'];
+            $subject = "[GO!] Grant Report Submitted for Approval from ".$row['people_FirstName']." ".$row['people_LastName']." at ".$row['inst_Name'];
             $body = "The grant award below has received a report for approval.\r\n\r\n" .
                     "   Announcement:  ".$row['ann_Public_Name']."\r\n\r\n" .
                     "   Proposal Title:  ".$row['proposal_Name']."\r\n\r\n" .
@@ -577,11 +578,11 @@ class Reports extends Common
         if($row = $result->fetch())
         {
             $query = "UPDATE tbl_MARS_Report_Data SET report_approvedBy = ".$user->peopleId.", report_approvedOn = NOW() WHERE report_data_ID = ".$_SESSION['report_ID'];        
-            error_log($query);
+            error_log($query."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
             $result = $this->Editor->doQuery($query);
             
             $query = "UPDATE tbl_MARS_Award_Incs SET award_inc_report_ID = ".$_SESSION['report_ID']." WHERE award_inc_ID = ".$award_inc_ID." AND (award_inc_report_ID IS NULL OR award_inc_report_ID = 0)";
-            error_log($query);
+            error_log($query."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
             $result = $this->Editor->doQuery($query);
             
             if($result)
@@ -593,7 +594,7 @@ class Reports extends Common
                 else
                 {
                     $query = "INSERT INTO tbl_MARS_Award_Incs (award_ID, award_inc_Date, award_inc_Number, award_inc_submittedby, award_inc_StartDate, award_inc_EndDate, award_inc_report_DueDate) VALUES (".$row['award_ID'].",NOW(),'".$row['award_inc_Number']."',".$user->peopleId.",NOW(),DATE_ADD('".$row['award_inc_EndDate']."',INTERVAL 1 YEAR),DATE_ADD('".$row['award_inc_report_DueDate']."',INTERVAL 1 YEAR))";
-                    error_log($query);
+                    error_log($query."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
                     $result = $this->Editor->doQuery($query);
                 
                     if($result)

@@ -51,7 +51,7 @@ class WelcomePage extends Common
         echo '<h3>&#8592; Please use the menus and instructions on the left to proceed</h3>';
         echo '</div>';
         echo '<br/><br/>';
-        echo '<h4 style="text-align:center;">This is still a beta version of GO! with limited functionality. If you wish to use the original version, click here: </h4>';
+        echo '<h4 style="text-align:center;">This is still a beta version of GO! with limited functionality. If you wish to use the original version (<u>or you need to register</u>), click here: </h4>';
         echo '<div class="button-box">';
         echo '<a target="_top" class="button-center" href="https://wvresearch.org/data/go">GO! v1.0</a>';
         echo '</div>';

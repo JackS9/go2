@@ -25,12 +25,12 @@ class UserTools {
         $queryParams = array('email' => $username);
         $stmt = DBC::get()->prepare($query);
         $result = $stmt->execute($queryParams);
-        if($result)
+        if($result && $stmt->rowCount()==1)
         {
             $row = $stmt->fetch();
-            //error_log("User query data: ".print_r($row,true),3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
+            error_log("User query data: ".print_r($row,true),3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
             $user = new User($row);
-            //error_log("User data: ".print_r($user,true),3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
+            error_log("User data: ".print_r($user,true),3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
             $_SESSION["user"] = serialize($user);
             $_SESSION["login_name"] = $username;
             $_SESSION["login_time"] = time();
@@ -62,7 +62,7 @@ class UserTools {
         $queryParams = array('uname' => $username);
         $stmt = DBC::get()->prepare($query);
         $result = $stmt->execute($queryParams);
-        if($result)
+        if($result && $stmt->rowCount()>=1)
         {
             return false;
         }else{
@@ -88,7 +88,7 @@ class UserTools {
             $queryParams = array('id' => $id);
             $stmt = DBC::get()->prepare($query);
             $result = $stmt->execute($queryParams);
-            if($result) 
+            if($result && $stmt->rowCount()==1)
             {
                 $row = $stmt->fetch();
                 $requested_user = new User($row);

@@ -358,14 +358,14 @@ class Awards extends Common
         if ($row['inst_FO_Contact'] != "") { $to = $to.",".$row['inst_FO_Contact']; };
 
         $headers = "From: go@wvresearch.org\r\n" .
-                   "CC: jan.taylor@wvresearch.org, annette.echols@wvresearch.org,\r\n" .
+                   "CC: juliana.serafin@wvresearch.org, annette.carpenter@wvresearch.org\r\n" .
                    "Bcc: jack.smith@wvresearch.org\r\n" .
                    "X-mailer: php";
-        $subject = "[GO!] Grant Awarded to ".$row[people_FirstName]." ".$row['people_LastName']." at ".$row['inst_Name'];
+        $subject = "[GO!] Grant Awarded to ".$row['people_FirstNamei']." ".$row['people_LastName']." at ".$row['inst_Name'];
         $body = "The following grant proposal has been awarded.\r\n\r\n" .
                 "   Announcement:  ".$row['ann_Public_Name']."\r\n" .
                 "   Proposal Title:  ".$row['proposal_Name']."\r\n" .
-                "   PI:  ".$row[people_FirstName]." ".$row['people_LastName']."\r\n" .
+                "   PI:  ".$row['people_FirstName']." ".$row['people_LastName']."\r\n" .
                 "   Institution:  ".$row['inst_Name']."\r\n" .
                 "   Amount:  $".$info['award_amount'].":\r\n" .
                 "   Start Date:  ".$info['award_StartDate'].":\r\n" .
@@ -383,7 +383,7 @@ class Awards extends Common
         if($row = $result->fetch())
         {        
             $query = "INSERT INTO tbl_MARS_Award_Incs (award_ID, award_inc_Date, award_inc_Number, award_inc_submittedby, award_inc_StartDate, award_inc_EndDate, award_inc_report_DueDate) VALUES (".$row['award_ID'].",NOW(),'".$row['award_Number']."',".$user->peopleId.",NOW(),DATE_ADD('".$row['award_StartDate']."',INTERVAL 1 YEAR),DATE_ADD('".$row['award_StartDate']."',INTERVAL 1 YEAR))";
-            error_log($query);
+            error_log($query."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
             $result = $this->Editor->doQuery($query);
         
             if($result)
@@ -415,14 +415,14 @@ class Awards extends Common
         if ($row['inst_FO_Contact'] != "") { $to = $to.",".$row['inst_FO_Contact']; };
 
         $headers = "From: go@wvresearch.org\r\n" .
-                   "CC: jan.taylor@wvresearch.org, annette.echols@wvresearch.org,\r\n" .
+                   "CC: juliana.serafin@wvresearch.org, annette.echols@wvresearch.org,\r\n" .
                    "Bcc: jack.smith@wvresearch.org\r\n" .
                    "X-mailer: php";
-        $subject = "[GO!] Grant Award Modification for ".$row[people_FirstName]." ".$row['people_LastName']." at ".$row['inst_Name'];
+        $subject = "[GO!] Grant Award Modification for ".$row['people_FirstName']." ".$row['people_LastName']." at ".$row['inst_Name'];
         $body = "The following grant award has been modified.\r\n\r\n" .
                 "   Announcement:  ".$row['ann_Public_Name']."\r\n" .
                 "   Proposal Title:  ".$row['proposal_Name']."\r\n" .
-                "   PI:  ".$row[people_FirstName]." ".$row['people_LastName']."\r\n" .
+                "   PI:  ".$row['people_FirstName']." ".$row['people_LastName']."\r\n" .
                 "   Institution:  ".$row['inst_Name']."\r\n" .
                 "   Amount:  $".$info['award_amount'].":\r\n" .
                 "   Start Date:  ".$info['award_StartDate'].":\r\n" .

@@ -48,35 +48,35 @@ class Common
         {    
             if($this->parseGet)
             {
-                error_log("REQUEST_URL: ".$_SERVER['PHP_SELF']);
-                error_log("GET PARAMS: ".print_r($_GET,true));
+                error_log("REQUEST_URL: ".$_SERVER['PHP_SELF']."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
+                error_log("GET PARAMS: ".print_r($_GET,true)."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
             }
             else
-                error_log("REQUEST_URI: ".$_SERVER['REQUEST_URI']);
+                error_log("REQUEST_URI: ".$_SERVER['REQUEST_URI']."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
         }
         if($this->logPost)
         {
             if($this->parseJson && isset($_POST['json']))
             {
                 $json_string = json_decode($_POST['json'],true);
-                error_log("JSON: ".json_encode($json_string,JSON_PRETTY_PRINT));
+                error_log("JSON: ".json_encode($json_string,JSON_PRETTY_PRINT)."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
                 if($this->decodeSessionData)
                 {
                     $sessionData = $json_string['sessionData'];
-                    error_log("SessionData (encoded): ".$sessionData);
+                    error_log("SessionData (encoded): ".$sessionData."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
                     $sessionData = (string) base64_decode($sessionData);
                     if($sessionData != NULL)
                     {
-                        error_log("SessionData (decoded): ".$sessionData);
+                        error_log("SessionData (decoded): ".$sessionData."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
                         $sessionArray = json_decode($sessionData);
-                        error_log("Session Data: ".print_r($sessionArray,true));
+                        error_log("Session Data: ".print_r($sessionArray,true)."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
                     }
                     else
-                        error_log("Decoded SessionData was NULL");
+                        error_log("Decoded SessionData was NULL"."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
                 }
             }
             else
-                error_log("POST: ".print_r($_POST,true));
+                error_log("POST: ".print_r($_POST,true)."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
         }
     }
         
@@ -85,7 +85,7 @@ class Common
         $message = sprintf('An error occurred in script %s on line %s: %s',$file,$line,$message);
         throw new Exception($message);
         echo '<span style="color: red;">'.$message.'</span>';
-        error_log($message);
+        error_log($message."\n",3,"/home/annech2/westvirginiaresearch.org/go2/error_log");
         //var_dump($message);
         exit();
     }
